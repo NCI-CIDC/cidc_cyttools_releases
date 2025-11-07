@@ -1,12 +1,13 @@
 # Base image 
-FROM amd64/ubuntu:20.04
+FROM amd64/ubuntu:24.04
 MAINTAINER Frankie Parks <frankie.parks@bioappdev.org>
 
 ## Run all root level commands 1st
 # Create a user and group used to launch processes
-RUN groupadd -r pipeline -g 1000 && useradd -u 1000 -r -g pipeline -m -d /home/pipeline -s /bin/bash -c "pipeline user" pipeline && chmod 755 /home/pipeline && chown pipeline:pipeline /home/pipeline
+# Assigned pipeline user to 999 ID; keep UID pinned at 1000
+RUN groupadd -r pipeline -g 999 && useradd -u 999 -r -g pipeline -m -d /home/pipeline -s /bin/bash -c "pipeline user" pipeline && chmod 755 /home/pipeline && chown pipeline:pipeline /home/pipeline
 
-#Create mount point directory
+ #Create mount point directory
 RUN mkdir -p /media/analysis && chmod 777 /media/analysis
 
 ## Update to latest OS packages

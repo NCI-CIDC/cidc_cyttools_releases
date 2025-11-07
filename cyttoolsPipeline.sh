@@ -1,23 +1,23 @@
 #!/bin/bash
 
 # Usage: Update/confirm SOURCE_DATA, CYTTOOLS_LOCATION, FCS_DIR, PANEL, METADATA, RESULTS_BLANKS, and RESULTS_CLUSTERING
-# ./cyttoolsPipeline.sh <BATCH SIZE FOR PROCESS>  &> /media/analysis/output/pipeline.log
-# Example: ./cyttoolsPipeline.sh 5 &> /media/analysis/output/pipeline.log
+# ./cyttoolsPipeline.sh <BATCH SIZE FOR PROCESS>  &> /media/analysis/output_Ub24/pipeline.log
+# Example: ./cyttoolsPipeline.sh 5 &> /media/analysis/output_Ub24/pipeline.log
 
 # Fill in the varibles below with the locations of your various files
 SOURCE_DATA="gs://" #Location of data on portal
 CYTTOOLS_LOCATION="/home/pipeline/cyttools/" #Location of cyttools code
-FCS_DIR="/media/analysis/input_data/" #Local location of source data
+FCS_DIR="/media/analysis/input_data_Ub24/" #Local location of source data
 BATCH_SIZE=$1  #Size of batches used for FlowSOM processing and post-processing
-PANEL="/media/analysis/results_blank/panelFile.txt" #Local location to store dataset panel
-METADATA="/media/analysis/results_blank/MetaDataFile.txt" #Local location to store dataset metadata
-RESULTS_BLANKS="/media/analysis/results_blank/" #Local location to store Rdata object
-RESULTS_CLUSTERING="/media/analysis/output/clustering/" #Local location to store pipeline output
+PANEL="/media/analysis/results_blank_Ub24/panelFile.txt" #Local location to store dataset panel
+METADATA="/media/analysis/results_blank_Ub24/MetaDataFile.txt" #Local location to store dataset metadata
+RESULTS_BLANKS="/media/analysis/results_blank_Ub24/" #Local location to store Rdata object
+RESULTS_CLUSTERING="/media/analysis/output_Ub24/clustering/" #Local location to store pipeline output
 
 # Clean up previous runs
-rm -r /media/analysis/input_data/*
-rm /media/analysis/results_blank/*
-rm -r /media/analysis/output/clustering/*
+rm -r /media/analysis/input_data_Ub24/*
+rm /media/analysis/results_blank_Ub24/*
+rm -r /media/analysis/output_Ub24/clustering/*
 
 # Pull in SOURCE_DATA
 gcloud storage cp "$SOURCE_DATA" "$FCS_DIR"
